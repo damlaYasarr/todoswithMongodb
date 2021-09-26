@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    />
+    <title>my daily todos</title>
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="card-header text-center">
+          <h4>TODOS</h4>
+        </div>
+        <br />
+        <div class="card-body">
+          <form class="form-group" id="form-input">
+            <input type="text" class="form-control" id="getInput" />
+            <br />
+            <input type="submit" class="btn btn-primary"  />
+            <br />
+          </form>
+        </div>
+
+        <br />
+        <hr />
+        <br />
+        <div class="card-body">
+          <div class="card-header">yapılacaklar listesi</div>
+
+          <ul class="list-group">
+          
+
+          </ul>
+          <hr />
+          <a
+            id="clear-todos"
+            type="button"
+            class="clear-todos btn btn-primary btn-sm col-md-3 center"
+          >
+            verileri temizle</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
