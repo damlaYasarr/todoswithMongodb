@@ -1,0 +1,38 @@
+//controller kısmında veri tabanı ve bilgi akışı gerçekleşir
+
+const Todo=require("../models/todo");
+const errorWrapper=require("./../helpers/error/errorWrapper")
+// gettodo, addTodo
+const addTodo =errorWrapper(  async(req,res,next)=>{
+
+     const {content, start }= req.body;
+     const todo= await Todo.create({
+        content
+     });
+ 
+    
+
+     res
+     .status(200)
+     .json({
+         success : true,
+         message : "todo eklendi",
+         data : todo
+     });
+  
+})
+const gettodo= errorWrapper(async (req,res, next)=>{
+  const {content, start}= req.body; 
+  const todo= await Todo.find(content,start)
+    return res.status(200).json({
+      success:true, 
+      data : todo
+    });
+
+  
+});
+
+
+module.exports= {
+  gettodo, addTodo
+}
