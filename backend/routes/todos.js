@@ -1,5 +1,5 @@
 const express = require("express");
-const {gettodo, addTodo}= require("../controllers/todo"); 
+const {gettodo, addTodo, deleteTodo}= require("../controllers/todo"); 
 
 const router=express.Router();
 
@@ -10,5 +10,6 @@ router.get("/", (req,res)=>{
 })
 router.get("/getTodo", gettodo);
 router.post("/addTodo", addTodo);
+router.delete("/deletetodo", deleteTodo);
 
 module.exports=router
