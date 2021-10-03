@@ -1,11 +1,10 @@
-//const axios=require('axios');
-//import axios from 'axios';
+
 const formInput = document.getElementById("form-input");
 const getInput = document.getElementById("getInput");
 const FirstcardBody = document.querySelectorAll(".card-body")[0];
 const secondcardBody = document.querySelectorAll(".card-body")[1];
 const listItemBody = document.querySelector(".list-group");
-const clearAll = document.getElementById("clear-todos");
+const clearAll = document.getElementById("clear-todos"); 
 eventListeners();
 function eventListeners() {
   formInput.addEventListener("submit", addTodo);
@@ -26,7 +25,7 @@ function addTodo(e) {
     addTodoUI(newTodo);
     addtoStorage(newTodo);
 
-    axios.post('http://localhost:2000/todo/addTodo',{content:newTodo}).then(resp => {
+    axios.post('http://localhost:3000/todo/addTodo',{content:newTodo}).then(resp => {
       
       console.log(resp.data)
     }).catch(function (error) {
@@ -69,14 +68,6 @@ function getTodotothestorage() { // Storagedan Todoları Alma
     todos = JSON.parse(localStorage.getItem("todos"));
 
 
-     link.href="#";
-      link.innerHTML= " <i class='fas fa-trash-alt'></i>"; 
-     todoElement.className = "list-group-item d-flex justify-content-between";
-  
-     todoElement.appendChild(document.createTextNode(todo)); //üretilen todo buraya yazılacak
-     todoElement.appendChild(link);
-     listItemBody.appendChild(todoElement);
-      getInput.value=" ";
   }
   return todos;
 
@@ -100,6 +91,7 @@ function addTodoUI(todo) {
 
   listItemBody.appendChild(todoElement);
   getInput.value = "";
+
 
 
 
@@ -208,6 +200,3 @@ function deleteAll(e) {
     localStorage.removeItem("todos");
   }
 }
-
-
-

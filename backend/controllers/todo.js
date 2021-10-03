@@ -33,14 +33,13 @@ const gettodo= errorWrapper(async (req,res, next)=>{
 });
 
 const deleteTodo= errorWrapper(async(req,res,next)=>{
-  const {_id}= req.params;
-  const todok= await Todo.findById(_id);
-
-  await todok.remove();
+  const {id}= req.params;
+  const todok= await Todo.findById(id);
+    await todok.remove();
 
   return res.status(200).json({
     success:true, 
-    data : {}
+    data : "silindi"
   })
 })
 module.exports= {

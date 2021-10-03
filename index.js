@@ -4,6 +4,7 @@ const express= require("express");
 const {connectDatabase}=require('./backend/helpers/database/connectToDb');//fonksiyonu çektik
 const dotenv=require('dotenv');
 const  routes= require("./backend/routes/todos")
+const userRoutes=require("./backend/routes/user")
 const path= require('path');
 const cors = require('cors')
 
@@ -21,11 +22,11 @@ connectDatabase();
 
 app.use("/todo", routes);
 
-
+app.use("/registerPage", userRoutes);
 
 
 
 
 app.listen(PORT, ()=>{
     console.log("halloooowwww");
-})
+});

@@ -10,6 +10,6 @@ router.get("/", (req,res)=>{
 })
 router.get("/getTodo", gettodo);
 router.post("/addTodo", addTodo);
-router.delete("/deletetodo", deleteTodo);
+router.delete("/deletetodo/:id", deleteTodo);
 
 module.exports=router

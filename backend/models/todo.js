@@ -11,13 +11,13 @@ const todoSchema= new Schema({
         type: Date,
         default: Date.now,
         required: 'Must have end date - default value is the created date + 1day'
-    }
+    },
     
-   /**  user :{
+     user :{
         type : mongoose.Schema.ObjectId,
         required: true,
         ref: "User"
-    }*/
+    }
 
 })
 
