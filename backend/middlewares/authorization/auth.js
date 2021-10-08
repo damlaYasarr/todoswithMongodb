@@ -3,7 +3,7 @@ const errorWrapper = require("../../helpers/error/errorWrapper");
 const User = require("../../models/user");
 
 const CustomError = require("../../helpers/error/customError");
-
+//oturum kontrolü burda gerçekleşir
 const getAccessRoute= errorWrapper(async(req,res,next)=>{
     if(!isTokenIncluded(req)){
         return next(new CustomError("you are not to authorization to access this page",403) )
@@ -14,6 +14,15 @@ const getAccessRoute= errorWrapper(async(req,res,next)=>{
     //control if token is valid
 
     jwt.verify(accessToken,process.env.JWT_SECRET_KEY,(err, decodedToken)=>{
+
+        if (err) {
+            return next(new CustomError("You are not authorized to access this page",401));
+        }
+        req.user = {
+            id : decodedToken.id,
+            email : decodedToken.email
+        };
+        next();
 
     })
 })

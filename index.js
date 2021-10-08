@@ -3,8 +3,8 @@
 const express= require("express");
 const {connectDatabase}=require('./backend/helpers/database/connectToDb');//fonksiyonu çektik
 const dotenv=require('dotenv');
-const  routes= require("./backend/routes/todos")
-const userRoutes=require("./backend/routes/user")
+
+const routes=require("./backend/routes")
 const path= require('path');
 const cors = require('cors')
 
@@ -20,9 +20,8 @@ const PORT=process.env.PORT;
 connectDatabase();
 
 
-app.use("/todo", routes);
+app.use("/todos", routes);
 
-app.use("/registerPage", userRoutes);
 
 
 

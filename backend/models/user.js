@@ -7,6 +7,7 @@ const Todo=require("./todo")
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
+
 const userSchema= new Schema({
       email :{
           type: String,
@@ -41,15 +42,15 @@ const userSchema= new Schema({
        
 }); 
 
-//  userSchema.methods.getTokenFromUserModel=function(){
-//      const {JWT_SECRET_KEY,JWT_EXPIRE }=process.env;
-//      const payload={
-         
-//          email=this.email
-//      }
-//      const token=jwt.sign(payload,JWT_SECRET_KEY,{expiresIn : JWT_EXPIRE}  )
-//      return token; 
-//  } ;
+ userSchema.methods.getTokenFromUserModel=function(){
+     const {JWT_SECRET_KEY,JWT_EXPIRE }=process.env;
+     const payload={
+         id: this._id,
+         email: this.email
+     }
+     const token=jwt.sign(payload,JWT_SECRET_KEY,{expiresIn : JWT_EXPIRE}  )
+     return token;  //user tokeni oluşturduk 
+ } ;
 
 
  userSchema.methods.getResetPasswordToken= function(){
