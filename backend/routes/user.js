@@ -7,8 +7,8 @@ const router=express.Router();
  
 
  router.post("/register", register); 
- //router.post("/login", login); 
-router.use([getAccessRoute,getAdminAccess]);
+ //router.post("/login", login); s
+//router.use([getAccessRoute,getAdminAccess]);
 router.get("/getAllUser",checkUserExist, getAlluser);
 router.delete("/deleteUser/:id", checkUserExist, deleteUser); 
 

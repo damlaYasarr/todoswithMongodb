@@ -38,8 +38,11 @@ const userSchema= new Schema({
     },
     resetPasswordExpire: {
         type : Date
-    }
-       
+    },
+    todos: [{
+        type: mongoose.Schema.ObjectId,
+        ref: 'todo'
+    }]
 }); 
 
  userSchema.methods.getTokenFromUserModel=function(){

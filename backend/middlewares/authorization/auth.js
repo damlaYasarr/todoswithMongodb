@@ -4,17 +4,20 @@ const User = require("../../models/user");
 
 const CustomError = require("../../helpers/error/customError");
 //oturum kontrolü burda gerçekleşir
-const getAccessRoute= errorWrapper(async(req,res,next)=>{
-    if(!isTokenIncluded(req)){
-        return next(new CustomError("you are not to authorization to access this page",403) )
-
+const getAccessToRoute = errorWrapper(async(req,res,next) => {
+    // Is Token Included
+    if (!isTokenIncluded(req)){
+        return next(new CustomError("You are not authorized to access this page",403));
     }
+    
+    // Get Token From Header
+    
+    const accessToken =  getAccessTokenFromHeader(req);
+    
+    // Control If Token Valid
 
-    const accessToken= getAccessTokenFromHeader(req);
-    //control if token is valid
-
-    jwt.verify(accessToken,process.env.JWT_SECRET_KEY,(err, decodedToken)=>{
-
+    jwt.verify(accessToken,process.env.JWT_SECRET_KEY,(err,decodedToken) => {
+        
         if (err) {
             return next(new CustomError("You are not authorized to access this page",401));
         }
@@ -23,9 +26,9 @@ const getAccessRoute= errorWrapper(async(req,res,next)=>{
             email : decodedToken.email
         };
         next();
-
-    })
-})
+    });
+    
+});
 
 const getAccessTokenFromHeader = (req) => {
 
@@ -33,7 +36,6 @@ const getAccessTokenFromHeader = (req) => {
     
     const accessToken = authorization.split(" ")[1];
     return accessToken;
-
 }
 const getAdminAccess = errorWrapper(async(req,res,next) => {
     
@@ -51,5 +53,5 @@ const isTokenIncluded = (req) => {
 }
 
 module.exports={
-    getAccessRoute,getAdminAccess
+    getAccessToRoute,getAdminAccess
 };
